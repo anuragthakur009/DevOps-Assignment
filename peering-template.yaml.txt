@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  VpcId1:
+    Type: String
+    Description: 'VPC Id for Peering (VPC1)'
+  VpcId2:
+    Type: String
+    Description: 'VPC Id for Peering (VPC2)'
+  ...
+
+Resources:
+  VpcPeeringConnection:
+    Type: 'AWS::EC2::VPCPeeringConnection'
+    Properties:
+      VpcId: !Ref VpcId1
+      PeerVpcId: !Ref VpcId2
+      ...

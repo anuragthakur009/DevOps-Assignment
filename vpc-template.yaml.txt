@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  VpcCidrBlock:
+    Type: String
+    Description: 'CIDR block for the VPC'
+  PublicSubnet1CidrBlock:
+    Type: String
+    Description: 'CIDR block for the public subnet 1'
+  PublicSubnet2CidrBlock:
+    Type: String
+    Description: 'CIDR block for the public subnet 2'
+  PrivateSubnet1CidrBlock:
+    Type: String
+    Description: 'CIDR block for the private subnet 1'
+  PrivateSubnet2CidrBlock:
+    Type: String
+    Description: 'CIDR block for the private subnet 2'
+
+Resources:
+  MyVPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: !Ref VpcCidrBlock
+      ...
+
+  PublicSubnet1:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      CidrBlock: !Ref PublicSubnet1CidrBlock
+      VpcId: !Ref MyVPC
+      ...
+
+  PublicSubnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      CidrBlock: !Ref PublicSubnet2CidrBlock
+      VpcId: !Ref MyVPC
+      ...
+
+  PrivateSubnet1:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      CidrBlock: !Ref PrivateSubnet1CidrBlock
+      VpcId: !Ref MyVPC
+      ...
+
+  PrivateSubnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      CidrBlock: !Ref PrivateSubnet2CidrBlock
+      VpcId: !Ref MyVPC
+      ...
+
+Outputs:
+  VpcId:
+    Description: 'VPC Id'
+    Value: !Ref MyVPC
+  ...

@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  DBInstanceIdentifier:
+    Type: String
+    Description: 'DB instance identifier'
+  VpcId:
+    Type: String
+    Description: 'VPC Id for RDS'
+  ...
+
+Resources:
+  MyDB:
+    Type: 'AWS::RDS::DBInstance'
+    Properties:
+      DBInstanceIdentifier: !Ref DBInstanceIdentifier
+      AllocatedStorage: 20
+      ...
+      VPCSecurityGroups:
+        - !Ref YourSecurityGroup
+      ...
+      DBSubnetGroupName: !Ref YourDBSubnetGroup
+      ...
+  ...

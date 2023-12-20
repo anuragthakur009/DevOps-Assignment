@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  VpcId:
+    Type: String
+    Description: 'VPC Id for VPN connection'
+  ...
+
+Resources:
+  VPNClient:
+    Type: 'AWS::EC2::VPNConnection'
+    Properties:
+      VpnGatewayId: !Ref VpcId
+      ...
+  ...
